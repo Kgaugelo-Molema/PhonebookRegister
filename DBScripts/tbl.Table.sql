@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Phonebook]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT newid(), 
+    [Name] NVARCHAR(50) NULL, 
+    [Entry] NVARCHAR(50) NULL
+)
