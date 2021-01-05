@@ -15,6 +15,7 @@ namespace PhonebookTests
 
         public int SaveEntry(Contact payload)
         {
+            ClearEntry(payload.Id);
             var sqlCmd = $"INSERT Entry (Id, Name, PhoneNumber) VALUES('{payload.Id}', '{payload.Name}', '{payload.PhoneNumber}')";
             var command = new SqlCommand(sqlCmd, _connection);
             return command.ExecuteNonQuery();
@@ -22,15 +23,10 @@ namespace PhonebookTests
 
         public int SavePhonebook(Phonebook phonebook)
         {
+            ClearPhonebook(phonebook.EntryId);
             var sqlCmd = $"INSERT Phonebook (Name, EntryId) VALUES('{phonebook.Name}', '{phonebook.EntryId}')";
             var command = new SqlCommand(sqlCmd, _connection);
             return command.ExecuteNonQuery();
-        }
-
-        public void ClearData(Guid entryId)
-        {
-            ClearPhonebook(entryId);
-            ClearEntry(entryId);
         }
 
         private void ClearPhonebook(Guid entryId)

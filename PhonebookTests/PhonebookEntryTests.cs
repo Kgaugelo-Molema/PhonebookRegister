@@ -16,9 +16,6 @@ namespace PhonebookTests
             _connection = new SqlConnection("Data Source=.;Initial Catalog=Phonebook;Integrated Security=True;Pooling=False");
             _repository = new PhonebookRepository(_connection);
 
-            _connection.Open();
-            var entryId = Guid.Parse(_entryId);
-            _repository.ClearData(entryId);
         }
 
         [Theory]
@@ -27,9 +24,14 @@ namespace PhonebookTests
         {
             var entryId = Guid.Parse(_entryId);
             var contact = new Contact { Id = entryId, Name = name, PhoneNumber = phoneNumber };
-            int result;
 
-            result = _repository.SaveEntry(contact);
+            int result;
+            using (_connection)
+            {
+                _connection.Open();
+                result = _repository.SaveEntry(contact);
+            }
+
             Assert.Equal(1, result);
         }
 
@@ -38,9 +40,13 @@ namespace PhonebookTests
         public void GivenEntryId_WhenAddingPhonebook_SavePayload(string name, string entryId)
         {
             int result;
+            using (_connection)
+            {
+                _connection.Open();
+                var phonebook = new Phonebook {Name = name, EntryId = Guid.Parse(entryId)};
+                result = _repository.SavePhonebook(phonebook);
+            }
 
-            var phonebook = new Phonebook { Name = name, EntryId = Guid.Parse(entryId) };
-            result = _repository.SavePhonebook(phonebook);
             Assert.Equal(1, result);
         }
     }
