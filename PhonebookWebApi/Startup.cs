@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,9 @@ namespace PhonebookWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            var connection = new SqlConnection("Data Source=.;Initial Catalog=Phonebook;Integrated Security=True;Pooling=False");
+            services.AddTransient<PhonebookRepository>(s => new PhonebookRepository(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

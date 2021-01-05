@@ -17,10 +17,12 @@ namespace PhonebookWebApi.Controllers
         };
 
         private readonly ILogger<PhonebookController> _logger;
+        private readonly PhonebookRepository _repository;
 
-        public PhonebookController(ILogger<PhonebookController> logger)
+        public PhonebookController(ILogger<PhonebookController> logger, PhonebookRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         [HttpGet]
@@ -34,6 +36,12 @@ namespace PhonebookWebApi.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost("{name}/{phonenumber}")]
+        public string PostEntry([FromRoute] string name, [FromRoute] string phoneNumber)
+        {
+            return $"Name = {name} - Number = {phoneNumber}";
         }
     }
 }
