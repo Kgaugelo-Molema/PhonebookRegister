@@ -26,22 +26,18 @@ namespace PhonebookWebApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Phonebook1> Get()
+        public IEnumerable<dynamic> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new Phonebook1
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return _repository.GetEntries();
         }
 
-        [HttpPost("{name}/{phonenumber}")]
-        public string PostEntry([FromRoute] string name, [FromRoute] string phoneNumber)
+        [HttpPost("{name}/{phonenumber}/{phonebook}")]
+        public int PostEntry([FromRoute] string name, [FromRoute] string phoneNumber, [FromRoute] string phoneBook)
         {
-            return $"Name = {name} - Number = {phoneNumber}";
+            var entryId = Guid.NewGuid();
+            var saveEntry = _repository.SaveEntry(new Contact {Id = entryId, Name = name, PhoneNumber = phoneNumber});
+            var savePhonebook = _repository.SavePhonebook(new Phonebook {Name = phoneBook, EntryId = entryId});
+            return saveEntry * savePhonebook;
         }
     }
 }

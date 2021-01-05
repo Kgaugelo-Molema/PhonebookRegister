@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace PhonebookWebApi
@@ -40,6 +42,30 @@ namespace PhonebookWebApi
             var sqlCmd = $"DELETE Entry WHERE Id = '{entryId}'";
             var command = new SqlCommand(sqlCmd, _connection);
             command.ExecuteNonQuery();
+        }
+
+        public IEnumerable<dynamic> GetEntries()
+        {
+            var sqlCmd = "SELECT  p.EntryId, p.Name [Phonebook], e.Name, e.PhoneNumber FROM Entry e JOIN Phonebook p ON e.Id = p.EntryId";
+            var command = new SqlCommand(sqlCmd, _connection);
+            var reader = command.ExecuteReader();
+
+            var entries = new List<dynamic>();
+            while (reader.Read())
+            {
+                var entry =
+                    new
+                    {
+                        Phonebook = reader.GetString("Phonebook"),
+                        EntryId = reader.GetGuid("EntryId"),
+                        Name = reader.GetString("Name"),
+                        PhoneNumber = reader.GetString("PhoneNumber")
+                    };
+
+                entries.Add(entry);
+            }
+
+            return entries;
         }
     }
 }
