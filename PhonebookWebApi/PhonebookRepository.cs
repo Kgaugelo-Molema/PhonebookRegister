@@ -1,8 +1,7 @@
 using System;
-using System.Data.Common;
 using System.Data.SqlClient;
 
-namespace PhonebookTests
+namespace PhonebookWebApi
 {
     public class PhonebookRepository
     {

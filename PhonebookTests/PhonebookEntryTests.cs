@@ -1,5 +1,6 @@
 using System;
 using System.Data.SqlClient;
+using PhonebookWebApi;
 using Xunit;
 
 namespace PhonebookTests

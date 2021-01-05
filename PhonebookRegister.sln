@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhonebookTests", "PhonebookTests\PhonebookTests.csproj", "{5028A5DA-689B-45B5-9BC7-DE6C3D33FE7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhonebookTests", "PhonebookTests\PhonebookTests.csproj", "{5028A5DA-689B-45B5-9BC7-DE6C3D33FE7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhonebookWebApi", "PhonebookWebApi\PhonebookWebApi.csproj", "{0FECE074-8A8E-4655-B988-02AC1DD37782}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5028A5DA-689B-45B5-9BC7-DE6C3D33FE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5028A5DA-689B-45B5-9BC7-DE6C3D33FE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5028A5DA-689B-45B5-9BC7-DE6C3D33FE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FECE074-8A8E-4655-B988-02AC1DD37782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FECE074-8A8E-4655-B988-02AC1DD37782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FECE074-8A8E-4655-B988-02AC1DD37782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FECE074-8A8E-4655-B988-02AC1DD37782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

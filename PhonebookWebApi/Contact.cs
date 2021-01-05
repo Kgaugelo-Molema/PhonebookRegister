@@ -1,6 +1,6 @@
 using System;
 
-namespace PhonebookTests
+namespace PhonebookWebApi
 {
     public class Contact
     {

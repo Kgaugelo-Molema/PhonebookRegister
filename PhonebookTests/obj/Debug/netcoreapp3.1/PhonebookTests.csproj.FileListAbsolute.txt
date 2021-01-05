@@ -98,3 +98,9 @@ C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\r
 C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard1.3\System.Data.SqlClient.dll
 C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard1.3\System.Data.SqlClient.dll
 C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\obj\Debug\netcoreapp3.1\PhonebookTests.csproj.CoreCompileInputs.cache
+C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\appsettings.json
+C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\PhonebookWebApi.exe
+C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\PhonebookWebApi.dll
+C:\KMolema\Assessment\PhonebookRegister\PhonebookTests\bin\Debug\netcoreapp3.1\PhonebookWebApi.pdb
