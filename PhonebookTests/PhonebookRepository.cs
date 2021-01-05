@@ -14,7 +14,14 @@ namespace PhonebookTests
 
         public int SaveEntry(Contact payload)
         {
-            var sqlCmd = $"INSERT Entry (Name, PhoneNumber) VALUES('{payload.Name}', '{payload.PhoneNumber}')";
+            var sqlCmd = $"INSERT Entry (Id, Name, PhoneNumber) VALUES('{payload.Name}', '{payload.PhoneNumber}')";
+            var command = new SqlCommand(sqlCmd, _connection);
+            return command.ExecuteNonQuery();
+        }
+
+        public int SavePhonebook(Phonebook phonebook)
+        {
+            var sqlCmd = $"INSERT Phonebook (Name, EntryId) VALUES('{phonebook.Name}', '{phonebook.EntryId}')";
             var command = new SqlCommand(sqlCmd, _connection);
             return command.ExecuteNonQuery();
         }

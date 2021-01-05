@@ -6,18 +6,40 @@ namespace PhonebookTests
 {
     public class PhonebookEntryTests
     {
+        private static SqlConnection _connection = new SqlConnection("Data Source=.;Initial Catalog=Phonebook;Integrated Security=True;Pooling=False");
+        private static PhonebookRepository _repository = new PhonebookRepository(_connection);
+        private const string _entryId = "972573b2-77fb-4db2-8f56-3c9d422e29ab";
+
+        public PhonebookEntryTests()
+        {
+            
+        }
+
         [Theory]
         [InlineData("Joe", "011 123 4567")]
         public void GivenContact_WhenAddingEntry_SavePayload(string name, string phoneNumber)
         {
-            var contact = new Contact { Name = name, PhoneNumber = phoneNumber };
-            var connection = new SqlConnection("Data Source=.;Initial Catalog=Phonebook;Integrated Security=True;Pooling=False");
+            var entryId = Guid.Parse(_entryId);
+            var contact = new Contact { Id = entryId, Name = name, PhoneNumber = phoneNumber };
             int result;
-            using (connection)
+            using (_connection)
             {
-                connection.Open();
-                var repo = new PhonebookRepository(connection);
-                result = repo.SaveEntry(contact);
+                _connection.Open();
+                result = _repository.SaveEntry(contact);
+            }
+            Assert.Equal(1, result);
+        }
+
+        [Theory]
+        [InlineData("Clients", _entryId)]
+        public void GivenEntryId_WhenAddingPhonebook_SavePayload(string name, string entryId)
+        {
+            int result;
+            using (_connection)
+            {
+                _connection.Open();
+                var phonebook = new Phonebook{ Name = name, EntryId = Guid.Parse(entryId) };
+                result = _repository.SavePhonebook(phonebook);
             }
             Assert.Equal(1, result);
         }
