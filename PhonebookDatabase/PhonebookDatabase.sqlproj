@@ -63,6 +63,8 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Phonebook.sql" />
     <Build Include="dbo\Tables\Entry.sql" />
-    <Build Include="Security\Admin.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PhonebookDatabase.publish.xml" />
   </ItemGroup>
 </Project>
