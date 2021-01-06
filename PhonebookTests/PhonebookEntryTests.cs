@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Data.SqlClient;
 using PhonebookWebApi;
 using Xunit;
@@ -47,6 +48,13 @@ namespace PhonebookTests
             }
 
             Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void CanGetEntries()
+        {
+            var result = _repository.GetEntries();
+            Assert.NotEmpty(result);
         }
     }
 }
