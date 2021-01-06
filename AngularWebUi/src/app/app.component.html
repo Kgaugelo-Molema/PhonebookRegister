@@ -295,8 +295,14 @@
   }
 </style>
 
+<h3>Add Entry</h3>
+<input [(ngModel)]="bookInput" [placeholder]="'Phonebook'">
+<input [(ngModel)]="nameInput" [placeholder]="'Contact Name'">
+<input [(ngModel)]="numberInput" [placeholder]="'Contact Number'"><br>
+<button (click)="addEntry()">Add Entry</button><br><br>
+
+<h2>Entries</h2>
 <input [(ngModel)]="searchInput" [placeholder]="'Search'">&nbsp;<button (click)="search()">Submit</button>
-<h1>Entries</h1>
 <ul>
   <li *ngFor="let entry of entries">
     <b>Phonebook: </b>{{entry.phonebook}}<br>
