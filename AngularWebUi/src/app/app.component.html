@@ -295,6 +295,7 @@
   }
 </style>
 
+<input [(ngModel)]="searchInput" [placeholder]="'Search'">&nbsp;<button (click)="search()">Submit</button>
 <h1>Entries</h1>
 <ul>
   <li *ngFor="let entry of entries">

@@ -12,17 +12,17 @@ export class AppComponent implements OnInit {
   options: any;
 
   private entries: any;
+  searchInput: string;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json', Accept: 'q=0.8;application/json;q=0.9' });
     this.options = ({ headers: this.headers });
   }
   ngOnInit(): void {
-    this.search('');
-    
+    this.search();
   }
 
-  search(term: string) {
+  search() {
     const promise = new Promise((resolve, reject) => {
       const apiURL = 'api/phonebook';
       this.http.get(apiURL)
@@ -30,11 +30,24 @@ export class AppComponent implements OnInit {
         .then(
           res => { // Success
             console.log(res);
-            this.entries = res;
+            this.populateResults(res);
             resolve();
           }
         );
     });
     return promise;
+  }
+
+  private populateResults(res) {
+    this.entries = [];
+    if (this.searchInput === '' || this.searchInput === undefined) {
+      this.entries = res;
+    } else {
+      (res as []).forEach(item => {
+        if (item.phonebook.toLowerCase() === this.searchInput.toLowerCase()) {
+          this.entries.push(item);
+        }
+      });
+    }
   }
 }
