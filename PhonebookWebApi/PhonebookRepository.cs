@@ -18,34 +18,45 @@ namespace PhonebookWebApi
         {
             ClearEntry(payload.Id);
             var sqlCmd = $"INSERT Entry (Id, Name, PhoneNumber) VALUES('{payload.Id}', '{payload.Name}', '{payload.PhoneNumber}')";
+            _connection.Open();
             var command = new SqlCommand(sqlCmd, _connection);
-            return command.ExecuteNonQuery();
+            var result = command.ExecuteNonQuery();
+            _connection.Close();
+            return result;
         }
 
         public int SavePhonebook(Phonebook phonebook)
         {
             ClearPhonebook(phonebook.EntryId);
+            _connection.Open();
             var sqlCmd = $"INSERT Phonebook (Name, EntryId) VALUES('{phonebook.Name}', '{phonebook.EntryId}')";
             var command = new SqlCommand(sqlCmd, _connection);
-            return command.ExecuteNonQuery();
+            var result = command.ExecuteNonQuery();
+            _connection.Close();
+            return result;
         }
 
         private void ClearPhonebook(Guid entryId)
         {
             var sqlCmd = $"DELETE Phonebook WHERE EntryId = '{entryId}'";
+            _connection.Open();
             var command = new SqlCommand(sqlCmd, _connection);
             command.ExecuteNonQuery();
+            _connection.Close();
         }
 
         private void ClearEntry(Guid entryId)
         {
             var sqlCmd = $"DELETE Entry WHERE Id = '{entryId}'";
+            _connection.Open();
             var command = new SqlCommand(sqlCmd, _connection);
             command.ExecuteNonQuery();
+            _connection.Close();
         }
 
         public IEnumerable<dynamic> GetEntries()
         {
+            _connection.Open();
             var sqlCmd = "SELECT  p.EntryId, p.Name [Phonebook], e.Name, e.PhoneNumber FROM Entry e JOIN Phonebook p ON e.Id = p.EntryId";
             var command = new SqlCommand(sqlCmd, _connection);
             var reader = command.ExecuteReader();
@@ -64,6 +75,7 @@ namespace PhonebookWebApi
 
                 entries.Add(entry);
             }
+            _connection.Close();
 
             return entries;
         }

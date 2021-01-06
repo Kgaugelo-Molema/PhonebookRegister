@@ -27,8 +27,12 @@ namespace PhonebookWebApi
         {
             services.AddControllers();
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
             var connection = new SqlConnection("Data Source=.;Initial Catalog=Phonebook;Integrated Security=True;Pooling=False");
-            connection.Open();
             services.AddTransient(s => new PhonebookRepository(connection));
         }
 
@@ -48,6 +52,13 @@ namespace PhonebookWebApi
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
+            app.UseHttpsRedirection();
         }
     }
 }

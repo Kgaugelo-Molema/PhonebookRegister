@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -26,9 +27,11 @@ namespace PhonebookWebApi.Controllers
         }
 
         [HttpGet]
+        //[EnableCors("AllowOrigin")] 
         public IEnumerable<dynamic> Get()
         {
-            return _repository.GetEntries();
+            var entries = _repository.GetEntries();
+            return entries;
         }
 
         [HttpPost("{name}/{phonenumber}/{phonebook}")]

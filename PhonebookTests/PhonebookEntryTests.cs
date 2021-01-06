@@ -29,7 +29,6 @@ namespace PhonebookTests
             int result;
             using (_connection)
             {
-                _connection.Open();
                 result = _repository.SaveEntry(contact);
             }
 
@@ -43,7 +42,6 @@ namespace PhonebookTests
             int result;
             using (_connection)
             {
-                _connection.Open();
                 var phonebook = new Phonebook {Name = name, EntryId = Guid.Parse(entryId)};
                 result = _repository.SavePhonebook(phonebook);
             }
